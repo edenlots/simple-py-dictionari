@@ -14,6 +14,7 @@ def getdata():
     elif text not in data:
         newtext=get_close_matches(text,data,cutoff=0.6)
         print("Are these the words you're looking for? "+ str(newtext))
+        getdata()
     else:
         print("The word does not exist.")
     return ask()
