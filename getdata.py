@@ -12,19 +12,19 @@ def getdata():
     elif text.title() in data:
         print(data[text.title()])
     elif text not in data:
-        newtext=get_close_matches(text,data,cutoff=0.6)
+        newtext=get_close_matches(text,data,cutoff=0.4)
         print("Are these the words you're looking for? "+ str(newtext))
         getdata()
     else:
         print("The word does not exist.")
     return ask()
 def ask():
-    key=input("\nType y to continue or n to exit (and press Enter)-- ")
+    key=input("\nDo you want to continue? (Type y or n and press Enter)-- ")
     if key == "y":
         return getdata()
     elif key == "n":
         quit()
     else:
-        print("\nPlease select Y or N")
+        print("\nPlease select y or n")
         return ask()
 getdata()
