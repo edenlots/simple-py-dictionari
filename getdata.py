@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from difflib import get_close_matches
 
-data = json.load(open("data.json"))
+data = json.load(open("D:\Projects\Simple Py Dictionary\simple-py-dictionari\data.json"))
 # optional sorting using lambda
 #sortedkey=dict(sorted(data.items(), key=lambda item:item[0]))
 
@@ -12,11 +12,14 @@ def getdata():
 
     # When word is found in the dictionary:
     if word in data:
-        result_label.config(text=data[word])
+        bullet = "\n ".join([f"\u2022 {v}" for v in data[word]])
+        result_label.config(text=bullet)
     elif word.upper() in data:
-        result_label.config(text=data[word.upper()])
+        bullet = "\n ".join([f"\u2022 {v}" for v in data[word.upper()]])
+        result_label.config(text=bullet)
     elif word.title() in data:
-        result_label.config(text=data[word.title()])
+        bullet = "\n ".join([f"\u2022 {v}" for v in data[word.title()]])
+        result_label.config(text=bullet)
 
     # When word is not found in the dictionary:
     elif word not in data:
@@ -40,8 +43,8 @@ entry.pack()
 
 tk.Button(root, text="Search", command=getdata, font=("Arial", 12)).pack(pady=5)
 
-result_label = tk.Label(root, text="", font=("Arial", 12), wraplength=350, fg="blue")
-result_label.pack(pady=10)
+result_label = tk.Label(root, text="", justify="left", font=("Arial", 12), wraplength=350, fg="blue")
+result_label.pack(pady=8, fill="both", expand=True)
 
 # Run GUI
 root.mainloop()
